@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерфейс Лаунчера с фоном</title>
+    <style>
+
+        .top-bar {
+            position: fixed;   /* 1. Намертво фиксируем на экране */
+            top: 0;            /* 2. Прижимаем к самому верхнему краю */
+            left: 0;           /* 3. Прижимаем к левому краю */
+            width: 100%;       /* 4. Растягиваем на всю ширину экрана */
+            height: 50px;      /* 5. Задаем высоту нашей панельке */
+            
+            background-color: #161a22; /* Цвет панели (сделай любой) */
+            color: white;           /* Цвет текста внутри */
+            
+            z-index: 9999;     /* 6. САМАЯ ГЛАВНАЯ МАГИЯ: этот слой будет выше всех остальных элементов на странице */
+            
+            /* Свойства ниже просто красиво центрируют текст внутри панели */
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            height: 85px;
+        }
+        .top-bar:has(.atombut:hover) .atomlogo {
+            opacity: 1;
+        }
+        /* Стили для нашей аватарки */
+        .atomlogo {
+            width: 19px;           /* Ширина картинки */
+            height: 19px;          /* Высота картинки */
+            border-radius: 50%;    /* Магия: делает квадратную картинку ИДЕАЛЬНО круглой */
+            object-fit: cover;     /* Чтобы картинка не сжималась и не растягивалась уродливо */
+            margin-bottom: 45px;
+            margin-left: -15px;  
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        body {
+            background-image: url();
+            
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            height: 100vh;
+        }
+
+        .atombut, .outfit {
+            padding: 10px 8px;      
+            font-size: 13px;        
+            font-weight: bold;        
+            background-color: #161a22; 
+            color: #7e868f;          
+            border: none;             
+            cursor: pointer;     
+            margin-top: -45px;
+            transition: background-color 0.2s ease; /* Чтобы цвет менялся плавно, а не резко */
+        }
+
+        /* ЭФФЕКТ ПРИ НАВЕДЕНИИ МЫШКИ */
+        .atombut:hover, .outfit:hover {
+            color: #ffffff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <img src="grand.png" alt="Аватар" class="atomlogo">
+
+        <button class="atombut">
+            AtomHub
+        </button>
+        <button class="outfit" id="outfit">
+            Вид
+        </button>
+    </div>
+</body>
+
+<script>
+    const myButton = document.getElementById('outfit');
+    myButton.addEventListener('click', function() {
+        if (myButton.textContent.trim() === "Вид") {
+            myButton.textContent = "outfit";
+            
+        } else {
+            myButton.textContent = "Вид"
+        }
+    });
+
+</script>
+</html>
